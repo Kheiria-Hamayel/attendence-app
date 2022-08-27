@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create|View trainees</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<!--<h1 th:text = "${traineeList}"/>
+<div>
+<button type="button" class="btn btn-primary">Primary</button>
+</div>-->
+<div class="position-absolute top-50 start-50 translate-middle">
+    <h1>Insert Trainee</h1>
+    <form method="post" action="/home">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control"  id="validationTooltip03" required placeholder="Trainee Name" name="Name">
+                <div class="invalid-tooltip">
+                    Please provide a valid Name.
+                </div>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control "  id="validationTooltip02" required placeholder="+970 xx-xxx-xxxx" name="phone_number">
+                <div class="invalid-tooltip">
+                    Please provide a valid Phone number.
+                </div>
+            </div>
+
+            <select name="city" class="col form-select mb-3" aria-label=".form-select-lg example">
+                <option th:each ="city: ${cities}"
+                        th:text ="${city.getCityName()}"/>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="att"  value="true" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Here
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="att"  value="false" id="flexRadioDefault2" >
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Not Here
+                </label>
+            </div>
+            </div>
+            <div class="col">
+                <input type="submit" class="btn btn-primary" value="Add Trainee"/>
+            </div>
+
+        </div>
+    </form>
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Attendance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each ="Trainee: ${traineeList}">
+            <td th:text ="${Trainee.getId()}"></td>
+            <td th:text ="${Trainee.getName()}"></td>
+            <td th:text ="${Trainee.getPhoneNum()}"></td>
+            <td th:text ="${Trainee.getCity()}"></td>
+            <td th:text ="${Trainee.getAttendance()}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+    <form method="delete" action="/delete">
+        <div class="col">
+            <input type="submit" class="btn btn-primary" value="Delete Trainee"/>
+        </div>
+
+    </form>
+        </div>
+        <div class="col">
+
+    <form method="get" action="/search">
+
+        <div class="col">
+            <input type="submit" class="btn btn-primary" value="Search Trainee"/>
+        </div>
+    </form>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
+
